@@ -1,0 +1,11 @@
+{
+  "name": "ssdactualtest",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-plugin-security": "^1.7.1"
+  }
+}
