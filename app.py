@@ -21,23 +21,22 @@ def validate_input(user_input):
 
     return "clean"
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == "POST":
+        search_term = request.form.get("search_term", "")
+        result = validate_input(search_term)
+
+        if result == "xss":
+            flash("Possible XSS detected. Try again.", "danger")
+            return redirect(url_for("index"))
+        elif result == "sqli":
+            flash("Possible SQL Injection detected. Try again.", "danger")
+            return redirect(url_for("index"))
+        else:
+            return render_template("result.html", search_term=search_term)
+
     return render_template("index.html")
-
-@app.route("/search", methods=["POST"])
-def search():
-    search_term = request.form["search_term"]
-    result = validate_input(search_term)
-
-    if result == "xss":
-        flash("Possible XSS detected. Try again.", "danger")
-        return redirect(url_for("index"))
-    elif result == "sqli":
-        flash("Possible SQL Injection detected. Try again.", "danger")
-        return redirect(url_for("index"))
-    else:
-        return render_template("result.html", search_term=search_term)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
