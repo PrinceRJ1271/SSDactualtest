@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Secure Search</h2>
+  {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+  <form method="POST">
+    <input name="search" placeholder="Enter search term" required>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
