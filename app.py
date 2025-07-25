@@ -24,7 +24,7 @@ def validate_input(user_input):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        search_term = request.form.get("search_term", "")
+        search_term = request.form["search_term"]
         result = validate_input(search_term)
 
         if result == "xss":
