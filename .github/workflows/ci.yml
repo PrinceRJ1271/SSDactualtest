@@ -61,7 +61,7 @@ jobs:
 
     - name: Install ESLint and security plugin
       run: |
-        npm ci
+        npm install
 
     - name: Run ESLint Security Scan
       run: |
