@@ -10,7 +10,7 @@ class BasicTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_form_submission(self):
-        response = self.app.post('/', data=dict(search="test"))
+        response = self.app.post('/', data=dict(search_term="test"))
         self.assertIn(b"Search Term Result", response.data)
 
 if __name__ == '__main__':
